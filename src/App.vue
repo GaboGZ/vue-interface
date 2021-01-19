@@ -1,26 +1,37 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="main-app" class="container">
+    <h4>{{ title }}</h4>
+    <span class="btn bg-primary text-white my-2">&plus; Add Appointment</span>
+    <appointment-list v-bind:appointments="appointments" @remove="removeItem"></appointment-list>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import axios from "axios";
+import _ from "lodash";
+import AppointmentList from "./components/AppointmentList";
 
 export default {
-  name: 'App',
+  name: "main-app",
+  data: function () {
+    return {
+      title: "Appointment List",
+      appointments: [],
+    };
+  },
   components: {
-    HelloWorld
+    AppointmentList
+  },
+  mounted(){
+    axios.get("./data/appointments.json")
+    .then(response => {
+      this.appointments = response.data;
+    })
+  },
+  methods: {
+    removeItem: function(apt){
+      this.appointments = _.without(this.appointments, apt);
+    }
   }
 }
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
