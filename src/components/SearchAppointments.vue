@@ -23,19 +23,21 @@
         </button>
 
         <div class="dropdown-menu dropdown-menu-right">
-          <a href="#" class="dropdown-item d-flex justify-content-between" id="petName">
+          <a href="#" class="dropdown-item d-flex justify-content-between" id="petName"
+          @click="$emit('requestKey','petName')">
             Pet Name
             <!-- <font-awesome-icon icon="check"/> -->
             <span v-if="myKey=='petName'">&check;</span>
           </a>
 
-          <a class="dropdown-item d-flex justify-content-between" href="#" id="aptDate">
+          <a class="dropdown-item d-flex justify-content-between" href="#" id="aptDate"
+          @click="$emit('requestKey','aptDate')">
             Date
             <!-- <font-awesome-icon icon="check"/> -->
             <span v-if="myKey=='aptDate'">&check;</span>
           </a>
 
-          <a href="#" class="dropdown-item d-flex justify-content-between" id="ownerName">
+          <a href="#" class="dropdown-item d-flex justify-content-between" id="ownerName" @click="$emit('requestKey','ownerName')">
             Owner
             <!-- <font-awesome-icon icon="check"/> -->
             <span v-if="myKey=='ownerName'">&check;</span>
@@ -43,13 +45,15 @@
 
           <div class="dropdown-divider" role="separator"></div>
 
-          <a class="dropdown-item d-flex justify-content-between" href="#" id="asc">
+          <a class="dropdown-item d-flex justify-content-between" href="#" id="asc"
+          @click="$emit('requestDir','asc')">
             Asc
             <!-- <font-awesome-icon icon="check"/> -->
             <span v-if="myDir=='asc'">&check;</span>
           </a>
 
-          <a class="dropdown-item d-flex justify-content-between" href="#" id="desc">
+          <a class="dropdown-item d-flex justify-content-between" href="#" id="desc"
+          @click="$emit('requestDir','desc')">
             Desc
             <!-- <font-awesome-icon icon="check"/> -->
             <span v-if="myDir=='desc'">&check;</span>

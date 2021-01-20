@@ -5,7 +5,10 @@
     <search-appointments 
       @searchRecords="searchItems" 
       :myKey="filterKey" 
-      :myDir="filterDir"/>
+      :myDir="filterDir"
+      @requestKey="changeKey"
+      @requestDir="changeDir"
+      />
     <appointment-list
       v-bind:appointments="filteredApts"
       @remove="removeItem"
@@ -82,6 +85,13 @@ export default {
     searchItems: function (terms) {
       this.searchTerms = terms;
     },
+    changeKey: function(value){
+      this.filterKey = value;
+    },
+    changeDir: function(value){
+      this.filterDir = value;
+    },
+    
   },
 };
 </script>
