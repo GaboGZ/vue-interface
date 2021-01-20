@@ -2,9 +2,12 @@
   <div id="main-app" class="container">
     <h4>{{ title }}</h4>
     <add-appointment @add="addItem" />
-    <search-appointments @searchRecords="searchItems" />
+    <search-appointments 
+      @searchRecords="searchItems" 
+      :myKey="filterKey" 
+      :myDir="filterDir"/>
     <appointment-list
-      v-bind:appointments="searchedApts"
+      v-bind:appointments="filteredApts"
       @remove="removeItem"
       @edit="editItem"
     />
@@ -23,6 +26,8 @@ export default {
   data: function () {
     return {
       title: "Appointment List",
+      filterKey: "petName",
+      filterDir: "asc",
       appointments: [],
       searchTerms: "",
     };
@@ -50,6 +55,15 @@ export default {
           item.aptNotes.toLowerCase().match(this.searchTerms.toLowerCase())
         );
       });
+    },
+    filteredApts: function () {
+      return _.orderBy(
+        this.searchedApts,
+        (item) => {
+          return item[this.filterKey].toLowerCase();
+        },
+        this.filterDir
+      );
     },
   },
   methods: {

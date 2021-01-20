@@ -26,19 +26,19 @@
           <a href="#" class="dropdown-item d-flex justify-content-between" id="petName">
             Pet Name
             <!-- <font-awesome-icon icon="check"/> -->
-            <span>&check;</span>
+            <span v-if="myKey=='petName'">&check;</span>
           </a>
 
           <a class="dropdown-item d-flex justify-content-between" href="#" id="aptDate">
             Date
             <!-- <font-awesome-icon icon="check"/> -->
-            <span>&check;</span>
+            <span v-if="myKey=='aptDate'">&check;</span>
           </a>
 
           <a href="#" class="dropdown-item d-flex justify-content-between" id="ownerName">
             Owner
             <!-- <font-awesome-icon icon="check"/> -->
-            <span>&check;</span>
+            <span v-if="myKey=='ownerName'">&check;</span>
           </a>
 
           <div class="dropdown-divider" role="separator"></div>
@@ -46,13 +46,13 @@
           <a class="dropdown-item d-flex justify-content-between" href="#" id="asc">
             Asc
             <!-- <font-awesome-icon icon="check"/> -->
-            <span>&check;</span>
+            <span v-if="myDir=='asc'">&check;</span>
           </a>
 
           <a class="dropdown-item d-flex justify-content-between" href="#" id="desc">
             Desc
             <!-- <font-awesome-icon icon="check"/> -->
-            <span>&check;</span>
+            <span v-if="myDir=='desc'">&check;</span>
           </a>
         </div>
       </div>
@@ -69,6 +69,7 @@ export default {
       searchTerm: ""
     };
   },
+  props: ["myKey","myDir"],
   components: {
     // FontAwesomeIcon
   },
